@@ -5,6 +5,7 @@ import static org.jboss.logging.Logger.Level.INFO;
 import static org.jboss.logging.Logger.Level.WARN;
 
 import org.infinispan.commons.CacheConfigurationException;
+import org.infinispan.logging.annotations.Description;
 import org.infinispan.rest.cachemanager.exceptions.CacheUnavailableException;
 import org.infinispan.rest.framework.Invocation;
 import org.infinispan.rest.framework.Method;
@@ -107,6 +108,8 @@ public interface Log extends BasicLogger {
    @Message(value = "The REST invocation [%s] has been deprecated. Please consult the upgrade guide", id = 12026)
    void warnDeprecatedCall(String invocation);
 
+   @LogMessage(level = ERROR)
    @Message(value = "Security authorization is not enabled on this server.", id = 12027)
+   @Description("This message occurs when an attempt is made to modify user roles and permissions when security authorization is disabled for the Cache Manager. T enable security authorization in the Cache Manager configuration then restart the server.")
    String authorizationNotEnabled();
 }

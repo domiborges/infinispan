@@ -78,6 +78,11 @@
       </dependency>
 
       <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-logging-processor</artifactId>
+      </dependency>
+
+      <dependency>
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-core</artifactId>
          <optional>true</optional>
