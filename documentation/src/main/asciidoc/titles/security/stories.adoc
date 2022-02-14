@@ -3,5 +3,7 @@
 
 include::../{topics}/con_security.adoc[leveloffset=+1]
 include::{stories}/assembly_authorization.adoc[leveloffset=+1]
+include::{stories}/assembly_authorization_remote.adoc[leveloffset=+2]
+include::{stories}/assembly_authorization_embedded.adoc[leveloffset=+2]
 include::{stories}/assembly_encrypting_cluster_traffic.adoc[leveloffset=+1]
 include::{stories}/assembly_ports_protocols.adoc[leveloffset=+1]

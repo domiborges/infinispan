@@ -10,20 +10,17 @@ When using embedded caches, you can configure authorization with the `GlobalSecu
 [source,java]
 ----
 GlobalConfigurationBuilder global = new GlobalConfigurationBuilder();
-global
-   .security()
-      .authorization().enable() <1>
-         .principalRoleMapper(new IdentityRoleMapper()) <2>
-         .role("admin") <3>
-            .permission(AuthorizationPermission.ALL)
-         .role("reader")
-            .permission(AuthorizationPermission.READ)
-         .role("writer")
-            .permission(AuthorizationPermission.WRITE)
-         .role("supervisor")
-            .permission(AuthorizationPermission.READ)
-            .permission(AuthorizationPermission.WRITE)
-            .permission(AuthorizationPermission.EXEC);
+      GlobalAuthorizationConfigurationBuilder globalRoles = global.security().authorization().enable()
+            .principalRoleMapper(new ClusterRoleMapper())
+            .rolePermissionMapper(new ClusterPermissionMapper());
+
+      AuthorizationConfigurationBuilder authConfig = config.security().authorization().enable();
+
+      globalRoles
+            .role("reader").permission(AuthorizationPermission.ALL_READ)
+            .role("writer").permission(AuthorizationPermission.ALL_WRITE)
+            .role("admin").permission(AuthorizationPermission.ALL);
+      authConfig.role("reader").role("writer").role("admin");
 ----
 +
 <1> Enables {brandname} authorization for the Cache Manager.

@@ -1,0 +1,32 @@
+[id='configuring-role-mappers_{context}']
+= Configuring role mappers
+
+LDAP and want to use DN as the principal
+Custom role or permission mappers
+
+Server provides default role mappers. No need to configure.
+
+<!-- Declare a role mapper that associates a security principal
+             to each role. -->
+        <identity-role-mapper />
+
+
+        Cluster role mapper:: Stores principal to role mappings in the cluster registry. This is the default role mapper in the {brandname} Server configuration.
+
+
+* Java class: `org.infinispan.security.mappers.ClusterRoleMapper`
+* Declarative configuration: `<cluster-role-mapper />`
+
+        Cluster permission mapper:: Stores role to permission mappings in the cluster registry and allows you to dynamically modify user roles and permissions. This is the default permission mapper in the {brandname} Server configuration.
+
+        org.infinispan.security.mappers.ClusterPermissionMapper
+
+        Identity role mapper:: Uses the principal name as the role name. The type or format of the principal name depends on the source. For example in an LDAP directory the principal name could be a Distinguished Name (DN).
+
+        * Java class: `org.infinispan.security.mappers.IdentityRoleMapper`
+* Declarative configuration: `<identity-role-mapper />`
+
+        Common name role mapper:: Uses the Common Name (CN) as the role name. You can use this role mapper with an LDAP directory that contains Distinguished Names (DN); for example `cn=managers,ou=people,dc=example,dc=com` maps to the `managers` role.
+
+        * Java class: `org.infinispan.security.mappers.CommonRoleMapper`
+* Declarative configuration: `<common-name-role-mapper />

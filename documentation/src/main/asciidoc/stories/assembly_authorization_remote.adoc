@@ -1,0 +1,14 @@
+[id='rbac-remote']
+:context: rbac-remote
+= Configuring user roles and permissions
+
+include::{topics}/proc_customizing_authorization.adoc[leveloffset=+1]
+include::{topics}/proc_cli_user_create.adoc[leveloffset=+1]
+include::{topics}/proc_configuring_cache_authorization.adoc[leveloffset=+1]
+include::{topics}/proc_configuring_role_mappers.adoc[leveloffset=+1]
+include::{topics}/proc_disabling_authorization.adoc[leveloffset=+1]
+include::{topics}/ref_acl_cache.adoc[leveloffset=+1]
+
+// Restore the parent context.
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]

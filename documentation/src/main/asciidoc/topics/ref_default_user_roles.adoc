@@ -1,13 +1,12 @@
-[id='user-roles-permissions_{context}']
-= User roles and permissions
+[id='default-user-roles_{context}']
+= Default user roles
 
-{brandname} includes a default set of roles that grant users with permissions to access data and interact with {brandname} resources.
+{brandname} includes several roles that provide users with permissions to access caches and {brandname} resources.
 
-[TIP]
-====
-Default roles use implicit authorization so creating a user named "admin" automatically grants `admin` permissions.
-Creating a user named `deployer` gets `deployer` permissions, and so on.
-====
+ifdef::embedded_caches[]
+{brandname} does not provide default user roles for embedded caches.
+You must add roles and assign permissions as part of your `GlobalConfigurationBuilder` or declarative {brandname} configuration.
+endif::embedded_caches[]
 
 [cols="1,1,1"]
 |===
