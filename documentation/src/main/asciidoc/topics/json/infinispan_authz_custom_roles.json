@@ -6,24 +6,14 @@
         "authorization" : {
           "identity-role-mapper" : null,
           "roles" : {
-            "reader" : {
+            "myroleone" : {
               "role" : {
-                "permissions" : "READ"
+                "permissions" : "ALL_WRITE LISTEN"
               }
             },
-            "admin" : {
+            "myroletwo" : {
               "role" : {
-                "permissions" : "ALL"
-              }
-            },
-            "writer" : {
-              "role" : {
-                "permissions" : "WRITE"
-              }
-            },
-            "supervisor" : {
-              "role" : {
-                "permissions" : "READ WRITE EXEC"
+                "permissions" : "READ WRITE"
               }
             }
           }

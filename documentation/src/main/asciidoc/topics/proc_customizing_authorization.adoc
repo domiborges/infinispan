@@ -5,6 +5,8 @@ You can customize authorization settings in your {brandname} configuration to us
 
 .Procedure
 
+. Open your {brandname} configuration for editing.
+//is step 2 required?
 . Declare a role mapper and a set of custom roles and permissions in the Cache Manager configuration.
 . Configure authorization for caches to restrict access based on user roles.
 
@@ -18,17 +20,6 @@ Creating a user named `deployer` gets `deployer` permissions, and so on.
 
 [discrete]
 == Custom roles and permissions configuration
-
-<infinispan>
-  <cache-container name="custom-authorization">
-    <security>
-      <authorization>
-        <role name="wizard" permissions="ALL_WRITE,LISTEN" />
-        <role name="cleric" permissions="READ,WRITE"/>
-      </authorization>
-    </security>
-  </cache-container>
-</infinispan>
 
 .XML
 [source,xml,options="nowrap",subs=attributes+,role="primary"]

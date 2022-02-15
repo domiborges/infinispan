@@ -5,15 +5,9 @@ infinispan:
       authorization:
         identityRoleMapper: "null"
         roles:
-          reader:
+          myroleone:
             role:
-              permissions: "READ"
-          admin:
+              permissions: "ALL_WRITE LISTEN"
+          myroletwo:
             role:
-              permissions: "ALL"
-          writer:
-            role:
-              permissions: "WRITE"
-          supervisor:
-            role:
-              permissions: "READ WRITE EXEC"
+              permissions: "READ WRITE"
