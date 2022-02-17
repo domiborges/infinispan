@@ -39,6 +39,12 @@ include::cmd_examples/user_create_group.adoc[]
 include::cmd_examples/user_tool_nix.adoc[]
 ----
 +
+[TIP]
+====
+Default roles use implicit authorization so creating a user named "admin" automatically grants `admin` permissions.
+Creating a user named `deployer` gets `deployer` permissions, and so on.
+====
++
 . Open `user.properties` and `groups.properties` with any text editor to verify users and groups.
 +
 [source,options="nowrap",subs=attributes+]

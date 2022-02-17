@@ -3,8 +3,7 @@
     "cache-container" : {
       "name" : "custom-authorization",
       "security" : {
-        "authorization" : {
-          "identity-role-mapper" : null,
+         "authorization" : {
           "roles" : {
             "myroleone" : {
               "role" : {

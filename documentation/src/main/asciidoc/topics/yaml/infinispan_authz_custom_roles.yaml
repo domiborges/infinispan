@@ -3,7 +3,6 @@ infinispan:
     name: "custom-authorization"
     security:
       authorization:
-        identityRoleMapper: "null"
         roles:
           myroleone:
             role:

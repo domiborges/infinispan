@@ -1,4 +1,4 @@
-[id='cli-user-create_{context}']
+[id='authorization-cli-user-create_{context}']
 = Creating roles with custom permissions at runtime
 
 Use {brandname} CLI to create custom authorization roles with different permissions.
@@ -7,13 +7,12 @@ Data about dynamically created roles is stored in the persistent data directory.
 
 .Prerequisites
 
-* Have a {brandname} user with `ADMIN` permissions.
+* Have a {brandname} user with `admin` permissions.
 
 .Procedure
 
 . Create a CLI connection to {brandname}.
 . Define a role with set of permissions.
-//one command at a time?
 +
 [source,bash,options="nowrap",subs=attributes+]
 ----
@@ -29,7 +28,7 @@ Data about dynamically created roles is stored in the persistent data directory.
 
 .Verification
 
-. List roles associated with your user.
+. List roles associated with the user.
 +
 [source,bash,options="nowrap",subs=attributes+]
 ----
@@ -38,16 +37,10 @@ Data about dynamically created roles is stored in the persistent data directory.
 . Use the CLI or the {brandname} Console to perform operations and test that you have the required permissions.
 
 .Next steps
-//keep only one of these
-* Remove roles from user.
+* Remove any roles that you created for a temporary purpose.
 +
 [source,bash,options="nowrap",subs=attributes+]
 ----
-[//containers/default]> user roles deny --roles=myroleone username
-----
-* Remove roles.
-+
-[source,bash,options="nowrap",subs=attributes+]
-----
+[//containers/default]> user roles deny --roles=myroleone, myroletwo username
 [//containers/default]> user remove roles myroleone myroletwo
 ----

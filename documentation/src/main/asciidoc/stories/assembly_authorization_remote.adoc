@@ -4,8 +4,9 @@
 
 Configure security authorization to control access to cache and {brandname} resources.
 
-include::{topics}/proc_customizing_authorization.adoc[leveloffset=+1]
-include::{topics}/proc_cli_user_create.adoc[leveloffset=+1]
+include::{topics}/proc_cli_creating_users.adoc[leveloffset=+1]
+include::{topics}/proc_authorization_cli_user_create.adoc[leveloffset=+1]
+include::{topics}/proc_authorization_custom_roles_cache_manager.adoc[leveloffset=+1]
 include::{topics}/proc_configuring_cache_authorization.adoc[leveloffset=+1]
 include::{topics}/proc_configuring_role_mappers.adoc[leveloffset=+1]
 include::{topics}/proc_disabling_authorization.adoc[leveloffset=+1]
