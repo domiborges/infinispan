@@ -17,8 +17,7 @@ You can enable remote JMX ports using one of the following approaches:
 * Enable remote JMX ports manually using the standard Java management configuration options.
 
 .Prerequisites
-* For remote JMX with authentication, define JMX specific user roles using the default security realm.
-Users must have `controlRole` with read/write access or the `monitorRole` with read-only access to access any JMX resources.
+* Have a user role with access to JMX resources. For more information see link:{server_docs}#jmx-role-mapping_statistics-jmx[{brandname} to JMX role mapping].
 
 .Procedure
 Start {brandname} Server with a remote JMX port enabled using one of the following ways:
@@ -47,7 +46,3 @@ bin/server.sh -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxr
 Enabling remote JMX with no authentication or SSL is not secure and not recommended in any environment.
 Disabling authentication and SSL allows unauthorized users to connect to your server and access the data hosted there.
 ====
-
-[role="_additional-resources"]
-.Additional resources
-* link:{server_docs}#creating-security-realms_security-realms[Creating security realms]

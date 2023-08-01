@@ -1,0 +1,19 @@
+[id='jmx-role-mapping_{context}']
+= {brandname} to JMX role mapping
+
+Users must have the `controlRole` or the `monitorRole` to access any JMX resources.
+{brandname} automatically maps global `ADMIN` and `MONITOR` permissions to the JMX `controlRole` and `monitorRole` roles.
+
+Users with other roles, must define JMX specific roles using the default security realm.
+
+.{brandname} to JMX role mapping
+[cols="3*", options="header"]
+|===
+| {brandname} permissions | JMX role | JMX access level
+| ALL (ADMIN) | controlRole | read-write for monitoring and management
+| MONITOR | monitorRole | read-only access for monitoring
+|===
+
+[role="_additional-resources"]
+.Additional resources
+* link:{server_docs}#creating-security-realms_security-realms[Creating security realms]
