@@ -1,6 +1,6 @@
-= {brandname} cache configuration cheat sheet
+= Cache configuration in Red Hat Data Grid
 
-Use the following information and configuration examples as a quick reference for creating and configuring {brandname} caches.
+Use the following information and configuration examples as a quick reference for creating and configuring Data Grid caches.
 
 == Clustered cache modes
 
@@ -27,7 +27,7 @@ Synchronous replication:: Helps to keep your data consistent but adds latency to
 ----
 <distributed-cache mode="SYNC" />
 ----
-Asynchronous replication:: Reduces latency and increases the speed of write operations but because {brandname} replicates entries from primary owners, asynchronous replication provides a lower guarantee against data loss.
+Asynchronous replication:: Reduces latency and increases the speed of write operations but because Data Grid replicates entries from primary owners, asynchronous replication provides a lower guarantee against data loss.
 Cluster topology changes and network errors might also lead to data inconsistency with asynchronous replication.
 +
 [source,xml]
@@ -38,9 +38,9 @@ Cluster topology changes and network errors might also lead to data inconsistenc
 == Cache configuration options
 
 === Encoding
-A format, identified by a media type, that {brandname} uses to store keys and values in caches.
+A format, identified by a media type, that Data Grid uses to store keys and values in caches.
 
-TIP: {brandname} recommends the `application/x-protostream` media type. Protobuf provides excellent performance as well as interoperability between client applications in different programming languages for both Hot Rod and REST endpoints. Your cache encoding must be compatible with the Hot Rod client marshaller.
+TIP: Data Grid recommends the `application/x-protostream` media type. Protobuf provides excellent performance as well as interoperability between client applications in different programming languages for both Hot Rod and REST endpoints. Your cache encoding must be compatible with the Hot Rod client marshaller.
 
 [source,xml]
 ----
@@ -53,7 +53,7 @@ TIP: {brandname} recommends the `application/x-protostream` media type. Protobuf
 ----
 
 === Expiration
-Controls how long {brandname} keeps entries in a cache and takes effect across clusters.
+Controls how long Data Grid keeps entries in a cache and takes effect across clusters.
 
 Lifespan::
 The maximum amount of time, in milliseconds, that cache entries can exist.
@@ -68,10 +68,10 @@ If you set the value to -1, entries never expire.
 
 Maximum idle uses a `last used` timestamp and the value for the `max-idle` property to determine when entries expire.
 The last access time for entries is not always the same on all nodes.
-To ensure that entries have the same relative access times across clusters, {brandname} sends touch commands to all owners when keys are accessed.
+To ensure that entries have the same relative access times across clusters, Data Grid sends touch commands to all owners when keys are accessed.
 This synchronous behavior increases the latency of client requests.
 
-TIP: The {brandname} team recommends that you set the `lifespan` property to a value that is at least double the value of the `max-idle` property. Configuring `max-idle` close to `lifespan` has performance drawbacks.
+TIP: The Data Grid team recommends that you set the `lifespan` property to a value that is at least double the value of the `max-idle` property. Configuring `max-idle` close to `lifespan` has performance drawbacks.
 
 [source,xml]
 ----
@@ -90,12 +90,12 @@ Keep disabled for optimal performance.
 <distributed-cache statistics="true" />
 ----
 
-== {brandname} capabilities
+== Data Grid capabilities
 
 === Bounded caches
 
 ==== Eviction
-Eviction controls the amount of data that {brandname} keeps in memory and takes effect on each node. Control the size of the data container in one of the following ways:
+Eviction controls the amount of data that Data Grid keeps in memory and takes effect on each node. Control the size of the data container in one of the following ways:
 
 Max size:: Maximum size in bytes of the data container.
 Eviction occurs when the approximate memory usage of the data container exceeds the maximum size.
@@ -118,9 +118,9 @@ Eviction occurs after the container size exceeds the maximum count.
 ----
 
 ===== Eviction strategies
-REMOVE:: {brandname} performs eviction. This is the default strategy when you define a size for the data container. Because not all nodes evict the same entries you should use eviction with persistent storage to avoid data inconsistency.
+REMOVE:: Data Grid performs eviction. This is the default strategy when you define a size for the data container. Because not all nodes evict the same entries you should use eviction with persistent storage to avoid data inconsistency.
 
-EXCEPTION:: {brandname} throws an exception instead of evicting entries.
+EXCEPTION:: Data Grid throws an exception instead of evicting entries.
 
 If no strategy is defined, but `max-count` or `max-size` is configured, `REMOVE` is used.
 
@@ -153,7 +153,7 @@ Store indexes in JVM heap memory for small data sets only.
 
 ==== Index reader
 The index reader provides access to the indexes to perform queries.
-As the index content changes, {brandname} needs to refresh the reader so that search results are up to date.
+As the index content changes, Data Grid needs to refresh the reader so that search results are up to date.
 
 [source,xml]
 ----
@@ -213,8 +213,8 @@ Secure your deployment by restricting user access to data.
 === Backups
 Define backup locations for cache data and modify state transfer properties.
 
-Backup strategies:: Specifies the type of strategy that {brandname} uses to back up data to a different cluster. {brandname} can use either a *synchronous* or *asynchronous* strategy.
-{brandname} performs conflict resolution with the asynchronous backup strategy.
+Backup strategies:: Specifies the type of strategy that Data Grid uses to back up data to a different cluster. Data Grid can use either a *synchronous* or *asynchronous* strategy.
+Data Grid performs conflict resolution with the asynchronous backup strategy.
 
 Remote site:: Specifies the name of the remote site that backs up data to the local cache.
 Remote cache:: Specifies the name of the remote cache that uses the local cache as a backup.
@@ -255,7 +255,7 @@ Timeout:: Specifies the timeout, in milliseconds, for synchronous and asynchrono
 === Transactions
 
 ==== Transaction mode
-Configure the mode that {brandname} uses when carrying out transactions to ensure that the cache state is consistent.
+Configure the mode that Data Grid uses when carrying out transactions to ensure that the cache state is consistent.
 
 NOTE: Enabling transaction mode for the cache to ensure consistency for conditional operations, such as `putIfAbsent` or `remove`, that require consistent cache data across the cluster.
 
@@ -264,13 +264,13 @@ NON_DURABLE_XA:: Cache will enlist within transactions as a `javax.transaction.x
 FULL_XA:: Cache will enlist within transactions as a `javax.transaction.xa.XAResource`, with recovery.
 
 ==== Locking mode
-Configure how {brandname} locks keys to perform write operations for transactions.
+Configure how Data Grid locks keys to perform write operations for transactions.
 Locking keys adds contention that increases latency for write operations.
 You can adjust the amount of contention by using optimistic or pessimistic locking.
 
-Optimistic:: {brandname} locks keys when it invokes the `commit()` method.
+Optimistic:: Data Grid locks keys when it invokes the `commit()` method.
 Keys are locked for shorter periods of time which reduces overall latency but makes transaction recovery less efficient.
-Pessimistic:: {brandname} locks keys when it invokes the `put()` method.
+Pessimistic:: Data Grid locks keys when it invokes the `put()` method.
 Keys are locked for longer periods of time, which increases latency but makes transaction recovery more efficient.
 +
 [source,xml]
@@ -288,7 +288,7 @@ Keys are locked for longer periods of time, which increases latency but makes tr
 Configure non-volatile storage so entries remain available after the cluster restarts.
 
 Passivation::
-{brandname} writes entries to persistent storage when it evicts those entries from memory. Passivation ensures that only a single copy of an entry is maintained, either in-memory or in a cache store, and prevents unnecessary and expensive writes to persistent storage.
+Data Grid writes entries to persistent storage when it evicts those entries from memory. Passivation ensures that only a single copy of an entry is maintained, either in-memory or in a cache store, and prevents unnecessary and expensive writes to persistent storage.
 [source,xml]
 ----
 <distributed-cache>
@@ -299,7 +299,7 @@ Passivation::
 ----
 
 .Persistent storage configuration
-File store:: File-based cache store on the local host filesystem. For clustered caches, file-based cache stores are unique to each {brandname} node.
+File store:: File-based cache store on the local host filesystem. For clustered caches, file-based cache stores are unique to each Data Grid node.
 +
 [source,xml]
 ----
@@ -313,18 +313,18 @@ File store:: File-based cache store on the local host filesystem. For clustered 
 </distributed-cache>
 ----
 
-Remote store:: Remote cache stores use the Hot Rod protocol to store data on {brandname} clusters.
+Remote store:: Remote cache stores use the Hot Rod protocol to store data on Data Grid clusters.
 Table SQL store:: Load entries from a single database table.
-Ensure that the appropriate JDBC driver is available to the {brandname} cluster.
+Ensure that the appropriate JDBC driver is available to the Data Grid cluster.
 Query SQL store:: Use SQL queries to load entries from one or more database tables, including sub-columns.
-You can also perform insert, update, and delete operations. You must ensure that the appropriate JDBC driver is available to the {brandname} cluster.
+You can also perform insert, update, and delete operations. You must ensure that the appropriate JDBC driver is available to the Data Grid cluster.
 JDBC string-based store:: Use a relational database for persistent storage through a JDBC connection.
-Ensure that the appropriate JDBC driver is available to the {brandname} cluster.
+Ensure that the appropriate JDBC driver is available to the Data Grid cluster.
 RocksDB store:: A RocksDB cache store uses two databases; one as a primary store and another to hold expired entries.
-Custom store:: Use a custom cache store that you implement with the {brandname} Persistence SPI.
+Custom store:: Use a custom cache store that you implement with the Data Grid Persistence SPI.
 
 == Configuration formats
-You can create {brandname} configuration in  XML, JSON, or YAML format.
+You can create Data Grid configuration in  XML, JSON, or YAML format.
 
 .XML
 [source,xml,options="nowrap",subs=attributes+,role="primary"]
