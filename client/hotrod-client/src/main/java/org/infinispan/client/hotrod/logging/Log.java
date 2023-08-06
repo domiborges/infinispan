@@ -399,4 +399,11 @@ public interface Log extends BasicLogger {
    @Message(value = "OpenTelemetry API is present in the classpath, but the tracing propagation is not enabled. Client context tracing will not be propagated.", id = 4111)
    void openTelemetryPropagationDisabled();
 
+   @LogMessage(level = INFO)
+   @Message(value = "Query module not found. Queries are disabled.", id = 4112)
+   void queryDisabled();
+
+   @Message(value = "Query module not found. Add remote-query-client to the classpath.", id = 4113)
+   HotRodClientException queryNotSupported();
+
 }
